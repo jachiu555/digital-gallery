@@ -5,6 +5,7 @@ const db = require('./database');
 const ClientError = require('./client-error');
 const staticMiddleware = require('./static-middleware');
 const sessionMiddleware = require('./session-middleware');
+// const { Client } = require('pg');
 
 const app = express();
 
@@ -23,6 +24,18 @@ app.get('/api/products', (req, res, next) => {
   db.query('select * from products')
     .then(result => res.json(result.rows))
     .catch(err => next(err));
+});
+
+app.get('/api/products/:productid', (req, res, next) => {
+  db.query('select * from products where productid = $1', [req.params.productid])
+    .then(result => {
+      if (!result.rows[0]) {
+        return next(new ClientError(`cannot find product with id ${req.params.productid}`, 404));
+      } else {
+        res.json(result.rows[0]);
+      }
+    }
+    );
 });
 
 app.use('/api', (req, res, next) => {
