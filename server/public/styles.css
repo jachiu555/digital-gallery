@@ -7,3 +7,33 @@
 .container {
   padding-top: 5%;
 }
+
+.card-img {
+  padding: 0;
+  box-shadow: 5px 10px gray;
+
+}
+
+.cardImage:hover {
+  transform: scale(1.05);
+}
+
+.imageDetail:hover {
+  transform: scale(1.5);
+}
+
+.card-body {
+  background-color: lightgray;
+  border: 1px solid black;
+  padding: 0;
+  box-shadow: 5px 10px gray;
+}
+
+.backToCatalog {
+  color: blue;
+  cursor: pointer;
+}
+
+.card-text {
+  margin: 25px;
+}
