@@ -7,9 +7,9 @@ export default class ProductListItem extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  // handleClick() {
-  //   console.log(this.props.item);
-  // }
+  handleClick() {
+    this.props.setView('details', { productid: this.props.item.productid });
+  }
 
   render() {
     return (
