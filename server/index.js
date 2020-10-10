@@ -38,6 +38,23 @@ app.get('/api/products/:productid', (req, res, next) => {
     );
 });
 
+app.post('/api/products/', (req, res, next) => {
+
+  if (!req.body.title || !parseInt(req.body.price) || !req.body.description || !req.body.image) {
+    res.status(400).json({ Error: 'Invalid content' });
+  }
+
+  const params = [req.body.title, parseInt(req.body.price), req.body.description, req.body.image];
+
+  db.query('insert into products ("title", "price", "description", "image") values ($1, $2, $3, $4)', params)
+    .then(result => {
+      res.status(201).json(result.rows);
+    })
+    .catch(err => {
+      res.status(500).json(err.message);
+    });
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
