@@ -37,3 +37,20 @@
 .card-text {
   margin: 25px;
 }
+
+.modalContainer {
+  position: fixed;
+  background-color: gray;
+  opacity: 90%;
+  width: 100vh;
+  height: 100vh;
+}
+
+.formTextSize {
+  width: 300px;
+}
+
+.form-control-file {
+  margin: 0;
+  width: 300px;
+}
