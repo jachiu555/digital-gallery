@@ -6,6 +6,7 @@
 
 .container {
   padding-top: 5%;
+  position: absolute;
 }
 
 .card-img {
@@ -40,10 +41,10 @@
 
 .modalContainer {
   position: fixed;
-  background-color: gray;
-  opacity: 90%;
+  background-color: lightgray;
+  opacity: 80%;
   width: 100vh;
-  height: 100vh;
+  backdrop-filter: blur(200px);
 }
 
 .formTextSize {
