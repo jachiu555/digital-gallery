@@ -46,7 +46,7 @@ export default class ProductForm extends React.Component {
     const fr = new FileReader();
 
     fr.readAsDataURL(file);
-    fr.addEventListener('uploaded', () => {
+    fr.addEventListener('loadend', () => {
       this.setState({
         upload: fr.result
       });
