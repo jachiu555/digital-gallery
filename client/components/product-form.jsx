@@ -8,7 +8,7 @@ export default class ProductForm extends React.Component {
       title: '',
       price: '',
       description: '',
-      upload: ''
+      image: ''
     };
 
     this.onTitleChange = this.onTitleChange.bind(this);
@@ -48,7 +48,7 @@ export default class ProductForm extends React.Component {
     fr.readAsDataURL(file);
     fr.addEventListener('loadend', () => {
       this.setState({
-        upload: fr.result
+        image: fr.result
       });
     });
   }
@@ -56,6 +56,30 @@ export default class ProductForm extends React.Component {
   handleSubmit(event) {
     // console.log(this.state);
     event.preventDefault();
+
+    // const formData = new FormData(event.target);
+
+    // formData.append('title', 'testformdata');
+    // formData.append('price', `${this.state.price}`);
+    // formData.append('description', `${this.state.description}`);
+    // formData.append('image', `${this.state.image}`);
+
+    // console.log(formData, 'thisisevent.target', event.target);
+
+    fetch('/api/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(response => response.json())
+      .then(result => {
+        console.error(result);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render() {
@@ -77,7 +101,7 @@ export default class ProductForm extends React.Component {
             <input value={this.state.description} onChange={this.onDescriptionChange} type="text" className="form-control" id="formGroupExampleInput2" placeholder="Another input"></input>
           </div>
           <div className="custom-file mb-5">
-            <input result={this.state.upload} onChange={this.onUploadImage} type="file" className="custom-file-input" id="customFile"></input>
+            <input result={this.state.image} onChange={this.onUploadImage} type="file" className="custom-file-input" id="customFile"></input>
             <label className="custom-file-label" htmlFor="customFile">Choose file</label>
           </div>
 

@@ -39,9 +39,8 @@ app.get('/api/products/:productid', (req, res, next) => {
 });
 
 app.post('/api/products/', (req, res, next) => {
-
   if (!req.body.title || !parseInt(req.body.price) || !req.body.description || !req.body.image) {
-    res.status(400).json({ Error: 'Invalid content' });
+    res.status(400).json({ Error: `Invalid content ${req.file}` });
   }
 
   const params = [req.body.title, parseInt(req.body.price), req.body.description, req.body.image];
