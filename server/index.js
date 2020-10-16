@@ -9,9 +9,12 @@ const sessionMiddleware = require('./session-middleware');
 
 const app = express();
 
+// const upload = multer({ dest: 'uploads/' })
+
 app.use(staticMiddleware);
 app.use(sessionMiddleware);
 
+// app.use(express.limit('50mb'));
 app.use(express.json());
 
 app.get('/api/health-check', (req, res, next) => {

@@ -54,7 +54,6 @@ export default class ProductForm extends React.Component {
   }
 
   handleSubmit(event) {
-    // console.log(this.state);
     event.preventDefault();
 
     // const formData = new FormData(event.target);
@@ -87,7 +86,7 @@ export default class ProductForm extends React.Component {
       <div className='container modalContainer'>
         <h1 className="text-center">Add an image</h1>
         <br></br>
-        <form onSubmit={this.handleSubmit}>
+        <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
           <div className="form-inline justify-content-center mb-5">
             <label className="mr-5 formTextSize" htmlFor="formGroupExampleInput">Title</label>
             <input value={this.state.title} onChange={this.onTitleChange} type="text" className="form-control" id="formGroupExampleInput" placeholder="Example input"></input>
