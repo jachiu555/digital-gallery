@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
+import ProductForm from './product-form';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,6 +40,8 @@ export default class App extends React.Component {
       return <ProductDetails setView={this.setView} productid={this.state.view.params}/>;
     } else if (this.state.view.name === 'catalog') {
       return <ProductList setView={this.setView}/>;
+    } else if (this.state.view.name === 'modal') {
+      return <ProductForm setView={this.setView}/>;
     }
   }
 

@@ -37,3 +37,24 @@
 .card-text {
   margin: 25px;
 }
+
+.modalContainer {
+  position: fixed;
+  background-color: lightgray;
+  opacity: 80%;
+  width: 100vh;
+  backdrop-filter: blur(200px);
+}
+
+.formTextSize {
+  width: 300px;
+}
+
+.form-control-file {
+  margin: 0;
+  width: 300px;
+}
+
+.plusIcon {
+  position: fixed;
+}
