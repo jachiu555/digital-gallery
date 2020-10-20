@@ -1,21 +1,37 @@
 require('dotenv/config');
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 
 const db = require('./database');
 const ClientError = require('./client-error');
 const staticMiddleware = require('./static-middleware');
 const sessionMiddleware = require('./session-middleware');
+// const { response } = require('express');
 // const { Client } = require('pg');
 
 const app = express();
 
-// const upload = multer({ dest: 'uploads/' })
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'public/uploads'));
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({
+  storage: storage
+}).single('myImage');
 
 app.use(staticMiddleware);
 app.use(sessionMiddleware);
 
 // app.use(express.limit('50mb'));
 app.use(express.json());
+
+app.use(express.static('./public'));
 
 app.get('/api/health-check', (req, res, next) => {
   db.query('select \'successfully connected\' as "message"')
@@ -41,12 +57,19 @@ app.get('/api/products/:productid', (req, res, next) => {
     );
 });
 
-app.post('/api/products/', (req, res, next) => {
-  if (!req.body.title || !parseInt(req.body.price) || !req.body.description || !req.body.image) {
+// app.post('/uploads/avatar', upload, (req, res) => {
+//   console.log(req.file)
+//   console.log(req.body)
+//   res.end();
+// })
+
+app.post('/api/products/', upload, (req, res, next) => {
+
+  if (!req.body.title || !parseInt(req.body.price) || !req.body.description) {
     res.status(400).json({ Error: `Invalid content ${req.file}` });
   }
 
-  const params = [req.body.title, parseInt(req.body.price), req.body.description, req.body.image];
+  const params = [req.body.title, parseInt(req.body.price), req.body.description, '/uploads/' + req.file.filename];
 
   db.query('insert into products ("title", "price", "description", "image") values ($1, $2, $3, $4)', params)
     .then(result => {
@@ -55,6 +78,7 @@ app.post('/api/products/', (req, res, next) => {
     .catch(err => {
       res.status(500).json(err.message);
     });
+
 });
 
 app.use('/api', (req, res, next) => {

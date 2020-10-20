@@ -12,6 +12,7 @@ export default class ProductList extends React.Component {
     };
 
     this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   getProducts() {
@@ -30,6 +31,12 @@ export default class ProductList extends React.Component {
     });
   }
 
+  hideModal(e) {
+    this.setState({
+      show: false
+    });
+  }
+
   componentDidMount() {
     this.getProducts();
   }
@@ -37,11 +44,11 @@ export default class ProductList extends React.Component {
   render() {
     const productArray = this.state.products.map(items => <ProductListItem setView={this.props.setView} item={items} key={items.productid} />);
 
-    const modal = this.state.show ? <ProductForm /> : null;
+    const modal = this.state.show ? <ProductForm hideModal={this.hideModal}/> : null;
 
     return (
       <div className="container">
-        <i className="fas fa-plus" onClick={this.showModal}></i>
+        <i className="fas fa-plus plusIcon" onClick={this.showModal}></i>
         <div className="row justify-content-center">
           {productArray}
           {modal}

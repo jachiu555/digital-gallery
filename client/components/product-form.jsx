@@ -54,28 +54,17 @@ export default class ProductForm extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
-    // const formData = new FormData(event.target);
-
-    // formData.append('title', 'testformdata');
-    // formData.append('price', `${this.state.price}`);
-    // formData.append('description', `${this.state.description}`);
-    // formData.append('image', `${this.state.image}`);
-
-    // console.log(formData, 'thisisevent.target', event.target);
+    const myForm = document.getElementById('myForm');
+    const formData = new FormData(myForm);
+    // window.formData = new FormData(myForm)
 
     fetch('/api/products', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
+      body: formData
     })
       .then(response => response.json())
-      .then(result => {
-        console.error(result);
-      })
       .catch(error => {
         console.error(error);
       });
@@ -84,23 +73,24 @@ export default class ProductForm extends React.Component {
   render() {
     return (
       <div className='container modalContainer'>
+        <i className="fas fa-times" onClick={() => this.props.hideModal()}></i>
         <h1 className="text-center">Add an image</h1>
         <br></br>
-        <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
+        <form id="myForm" name="myForm" encType="multipart/form-data" onSubmit={this.handleSubmit}>
           <div className="form-inline justify-content-center mb-5">
-            <label className="mr-5 formTextSize" htmlFor="formGroupExampleInput">Title</label>
-            <input value={this.state.title} onChange={this.onTitleChange} type="text" className="form-control" id="formGroupExampleInput" placeholder="Example input"></input>
+            <label className="mr-5 formTextSize" htmlFor="title">Title</label>
+            <input value={this.state.title} onChange={this.onTitleChange} type="text" name="title" className="form-control" placeholder="Example input"></input>
           </div>
           <div className="form-inline justify-content-center mb-5">
             <label className="mr-5 formTextSize" htmlFor="formGroupExampleInput2">Price</label>
-            <input value={this.state.price} onChange={this.onPriceChange} type="text" className="form-control" id="formGroupExampleInput2" placeholder="Another input"></input>
+            <input value={this.state.price} onChange={this.onPriceChange} type="text" name="price" className="form-control" id="formGroupExampleInput2" placeholder="Another input"></input>
           </div>
           <div className="form-inline justify-content-center mb-5">
             <label className="mr-5 formTextSize" htmlFor="formGroupExampleInput2">Description</label>
-            <input value={this.state.description} onChange={this.onDescriptionChange} type="text" className="form-control" id="formGroupExampleInput2" placeholder="Another input"></input>
+            <input value={this.state.description} onChange={this.onDescriptionChange} type="text" name="description" className="form-control" id="formGroupExampleInput2" placeholder="Another input"></input>
           </div>
           <div className="custom-file mb-5">
-            <input result={this.state.image} onChange={this.onUploadImage} type="file" className="custom-file-input" id="customFile"></input>
+            <input result={this.state.image} onChange={this.onUploadImage} type="file" name="myImage" className="custom-file-input" id="customFile"></input>
             <label className="custom-file-label" htmlFor="customFile">Choose file</label>
           </div>
 
