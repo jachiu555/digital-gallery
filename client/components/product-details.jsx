@@ -5,10 +5,14 @@ export default class ProductDetails extends React.Component {
     super(props);
 
     this.state = {
-      product: null
+      product: null,
+      editing: false
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleSave = this.handleSave.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +32,62 @@ export default class ProductDetails extends React.Component {
     this.props.setView('catalog', {});
   }
 
+  handleUpdate() {
+    this.setState({
+      editing: true
+    });
+  }
+
+  handleSave() {
+    const productData = { ...this.state.product };
+
+    this.setState({
+      editing: false
+    });
+
+    fetch(`/api/products/${this.state.product.productid}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(productData)
+    })
+      .then(response => response.json())
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  handleEdit(e) {
+    const productData = { ...this.state.product };
+    productData[e.target.name] = e.target.value;
+
+    this.setState({
+      product: productData
+    });
+  }
+
+  renderDefault() {
+    return (
+      <>
+        <h4 className="card-title text-center">{this.state.product.title}</h4>
+        <br></br>
+        <h5 className="card-text">{this.state.product.description}</h5>
+        <h5 className="card-text">${Math.round(this.state.product.price) / 100}</h5>
+      </>
+    );
+  }
+
+  renderUpdate() {
+    return (
+      <>
+        <input name="title" type="text" value={this.state.product.title} onChange={this.handleEdit}/>
+        <input name="description" type="text" value={this.state.product.description} onChange={this.handleEdit}/>
+        <input name="price" type="text" value={this.state.product.price} onChange={this.handleEdit}/>
+      </>
+    );
+  }
+
   render() {
     return !this.state.product
       ? <h1>Retrieving data...</h1>
@@ -40,10 +100,9 @@ export default class ProductDetails extends React.Component {
             <div className="d-flex justify-content-between">
               <img className="card-img imageDetail col-md-5" src={this.state.product.image} alt="Card image cap"></img>
               <div className="card-body col-md-5">
-                <h4 className="card-title text-center">{this.state.product.title}</h4>
-                <br></br>
-                <h5 className="card-text">{this.state.product.description}</h5>
-                <h5 className="card-text">${Math.round(this.state.product.price) / 100}</h5>
+                {!this.state.editing ? (<button className="btn-primary" onClick={this.handleUpdate}>Update</button>) : <button className="btn-secondary" onClick={this.handleSave}>Save</button>}
+
+                {!this.state.editing ? <>{this.renderDefault()}</> : <>{this.renderUpdate()}</>}
               </div>
             </div>
           </div>
