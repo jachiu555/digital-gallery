@@ -28,7 +28,6 @@ const upload = multer({
 app.use(staticMiddleware);
 app.use(sessionMiddleware);
 
-// app.use(express.limit('50mb'));
 app.use(express.json());
 
 app.use(express.static('./public'));
@@ -57,12 +56,6 @@ app.get('/api/products/:productid', (req, res, next) => {
     );
 });
 
-// app.post('/uploads/avatar', upload, (req, res) => {
-//   console.log(req.file)
-//   console.log(req.body)
-//   res.end();
-// })
-
 app.post('/api/products/', upload, (req, res, next) => {
 
   if (!req.body.title || !parseInt(req.body.price) || !req.body.description) {
@@ -79,6 +72,18 @@ app.post('/api/products/', upload, (req, res, next) => {
       res.status(500).json(err.message);
     });
 
+});
+
+app.patch('/api/products/:productid/', (req, res, next) => {
+  const params = [req.body.title, parseInt(req.body.price), req.body.description, parseInt(req.params.productid)];
+
+  db.query('update products set "title" = $1, "price" = $2, "description" = $3 where productid = $4', params)
+    .then(result => {
+      res.status(201).json(result.rows);
+    })
+    .catch(err => {
+      res.status(500).json(err.message);
+    });
 });
 
 app.use('/api', (req, res, next) => {
