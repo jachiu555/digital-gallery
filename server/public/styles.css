@@ -11,11 +11,14 @@
 .card-img {
   padding: 0;
   box-shadow: 5px 10px gray;
-
 }
 
 .cardImage:hover {
   transform: scale(1.05);
+}
+
+.imageDetail {
+  height: 300px;
 }
 
 .imageDetail:hover {
@@ -31,6 +34,11 @@
 
 .backToCatalog {
   color: blue;
+  cursor: pointer;
+}
+
+.deleteArt {
+  color: red;
   cursor: pointer;
 }
 

@@ -13,6 +13,7 @@ export default class ProductDetails extends React.Component {
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -58,6 +59,20 @@ export default class ProductDetails extends React.Component {
       });
   }
 
+  handleDelete() {
+    fetch(`/api/products/${this.state.product.productid}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(this.props.setView('catalog', {}))
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   handleEdit(e) {
     const productData = { ...this.state.product };
     productData[e.target.name] = e.target.value;
@@ -93,9 +108,12 @@ export default class ProductDetails extends React.Component {
       ? <h1>Retrieving data...</h1>
       : <>
         <div className="container">
-          <p className="backToCatalog mb-5" onClick={this.handleClick}>
-          Back to Catalog
-          </p>
+          <div className="menuContainer row justify-content-between">
+            <p className="backToCatalog mb-5" onClick={this.handleClick}>
+              Back to Catalog
+            </p>
+            <p className="deleteArt" onClick={this.handleDelete}>Delete</p>
+          </div>
           <div className="row">
             <div className="d-flex justify-content-between">
               <img className="card-img imageDetail col-md-5" src={this.state.product.image} alt="Card image cap"></img>
