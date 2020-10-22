@@ -86,6 +86,18 @@ app.patch('/api/products/:productid/', (req, res, next) => {
     });
 });
 
+app.delete('/api/products/:productid/', (req, res, next) => {
+  const params = [parseInt(req.params.productid)];
+
+  db.query('delete from products where productid = $1', params)
+    .then(result => {
+      res.status(201).json(result.rows);
+    })
+    .catch(err => {
+      res.status(500).json(err.message);
+    });
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
