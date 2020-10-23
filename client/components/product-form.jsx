@@ -42,7 +42,6 @@ export default class ProductForm extends React.Component {
 
   onUploadImage(event) {
     const [file] = event.target.files;
-
     const fr = new FileReader();
 
     fr.readAsDataURL(file);
@@ -54,11 +53,8 @@ export default class ProductForm extends React.Component {
   }
 
   handleSubmit(event) {
-    // event.preventDefault();
-
     const myForm = document.getElementById('myForm');
     const formData = new FormData(myForm);
-    // window.formData = new FormData(myForm)
 
     fetch('/api/products', {
       method: 'POST',
