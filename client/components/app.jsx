@@ -6,6 +6,7 @@ import ProductForm from './product-form';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       message: null,
       isLoading: true,

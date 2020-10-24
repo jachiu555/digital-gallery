@@ -7,8 +7,6 @@ const db = require('./database');
 const ClientError = require('./client-error');
 const staticMiddleware = require('./static-middleware');
 const sessionMiddleware = require('./session-middleware');
-// const { response } = require('express');
-// const { Client } = require('pg');
 
 const app = express();
 
@@ -52,12 +50,10 @@ app.get('/api/products/:productid', (req, res, next) => {
       } else {
         res.json(result.rows[0]);
       }
-    }
-    );
+    });
 });
 
 app.post('/api/products/', upload, (req, res, next) => {
-
   if (!req.body.title || !parseInt(req.body.price) || !req.body.description) {
     res.status(400).json({ Error: `Invalid content ${req.file}` });
   }
@@ -71,7 +67,6 @@ app.post('/api/products/', upload, (req, res, next) => {
     .catch(err => {
       res.status(500).json(err.message);
     });
-
 });
 
 app.patch('/api/products/:productid/', (req, res, next) => {
