@@ -2,6 +2,7 @@ import React from 'react';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
 import ProductForm from './product-form';
+import Header from './header';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -49,6 +50,9 @@ export default class App extends React.Component {
   render() {
     return this.state.isLoading
       ? <h1>Testing connections...</h1>
-      : <>{this.renderView()}</>;
+      : <>
+        <Header setView={this.setView}/>
+        {this.renderView()}
+      </>;
   }
 }
