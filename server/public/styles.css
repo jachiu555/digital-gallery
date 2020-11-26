@@ -9,6 +9,7 @@ h3 {
   color: white;
   font-size: medium;
   padding-top: 1vh;
+  cursor: pointer;
 }
 
 .signIn, .signUp, .signOut {
