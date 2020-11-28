@@ -8,12 +8,12 @@ header {
 h3 {
   color: white;
   font-size: medium;
-  padding-top: 1vh;
   cursor: pointer;
 }
 
 .signIn, .signUp, .signOut {
   color: white;
+  font-size: medium;
 }
 
 .cardImage {
@@ -83,4 +83,5 @@ h3 {
 
 .plusIcon {
   position: fixed;
+  cursor: pointer;
 }
