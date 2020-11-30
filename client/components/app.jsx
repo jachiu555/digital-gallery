@@ -3,6 +3,7 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import ProductForm from './product-form';
 import Header from './header';
+import SignUpForm from './signup-form';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -52,7 +53,8 @@ export default class App extends React.Component {
       ? <h1>Testing connections...</h1>
       : <>
         <Header setView={this.setView}/>
-        {this.renderView()}
+        {/* {this.renderView()} */}
+        <SignUpForm/>
       </>;
   }
 }
