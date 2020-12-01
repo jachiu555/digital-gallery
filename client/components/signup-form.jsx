@@ -14,15 +14,15 @@ export default class SignUpForm extends React.Component {
 
   render() {
     return (
-      <form>
+      <form className="container">
         <div className="form-row">
           <div className="col-md-4 mb-3">
             <label htmlFor="validationDefault01">First name</label>
-            <input type="text" className="form-control" id="validationDefault01" placeholder="First name" value="Mark" required></input>
+            <input type="text" className="form-control" id="validationDefault01" placeholder="First name" required></input>
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="validationDefault02">Last name</label>
-            <input type="text" className="form-control" id="validationDefault02" placeholder="Last name" value="Otto" required></input>
+            <input type="text" className="form-control" id="validationDefault02" placeholder="Last name" required></input>
           </div>
           <div className="col-md-4 mb-3">
             <label htmlFor="validationDefaultUsername">Username</label>
