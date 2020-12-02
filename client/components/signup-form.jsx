@@ -10,6 +10,49 @@ export default class SignUpForm extends React.Component {
       userName: '',
       email: ''
     };
+
+    this.onFirstNameChange = this.onFirstNameChange.bind(this);
+    this.onLastNameChange = this.onLastNameChange.bind(this);
+    this.onUserNameChange = this.onUserNameChange.bind(this);
+    this.onEmailChange = this.onEmailChange.bind(this);
+  }
+
+  onFirstNameChange(event) {
+    this.setState({
+      firstName: event.target.value
+    });
+  }
+
+  onLastNameChange(event) {
+    this.setState({
+      lastName: event.target.value
+    });
+  }
+
+  onUserNameChange(event) {
+    this.setState({
+      userName: event.target.value
+    });
+  }
+
+  onEmailChange(event) {
+    this.setState({
+      email: event.target.value
+    });
+  }
+
+  handleSubmit(event) {
+    const myForm = document.getElementById('myForm');
+    const formData = new FormData(myForm);
+
+    fetch('/api/products', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render() {
