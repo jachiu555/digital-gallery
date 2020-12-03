@@ -99,7 +99,7 @@ export default class SignUpForm extends React.Component {
             </label>
           </div>
         </div>
-        <button className="btn btn-primary" type="submit">Submit form</button>
+        <button className="btn btn-primary" type="submit">Submit</button>
       </form>
     );
   }
