@@ -45,6 +45,8 @@ export default class App extends React.Component {
       return <ProductList setView={this.setView}/>;
     } else if (this.state.view.name === 'modal') {
       return <ProductForm setView={this.setView}/>;
+    } else if (this.state.view.name === 'signup') {
+      return <SignUpForm setView={this.setView}/>;
     }
   }
 
@@ -53,8 +55,7 @@ export default class App extends React.Component {
       ? <h1>Testing connections...</h1>
       : <>
         <Header setView={this.setView}/>
-        {/* {this.renderView()} */}
-        <SignUpForm/>
+        {this.renderView()}
       </>;
   }
 }
