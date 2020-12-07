@@ -8,12 +8,14 @@ export default class SignUpForm extends React.Component {
       firstName: '',
       lastName: '',
       userName: '',
+      password: '',
       email: ''
     };
 
     this.onFirstNameChange = this.onFirstNameChange.bind(this);
     this.onLastNameChange = this.onLastNameChange.bind(this);
     this.onUserNameChange = this.onUserNameChange.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onEmailChange = this.onEmailChange.bind(this);
   }
 
@@ -32,6 +34,12 @@ export default class SignUpForm extends React.Component {
   onUserNameChange(event) {
     this.setState({
       userName: event.target.value
+    });
+  }
+
+  onPasswordChange(event) {
+    this.setState({
+      password: event.target.value
     });
   }
 
@@ -59,15 +67,15 @@ export default class SignUpForm extends React.Component {
     return (
       <form className="container">
         <div className="form-row">
-          <div className="col-md-4 mb-3">
+          <div className="col-md-3 mb-3">
             <label htmlFor="validationDefault01">First name</label>
             <input type="text" className="form-control" id="validationDefault01" placeholder="First name" required></input>
           </div>
-          <div className="col-md-4 mb-3">
+          <div className="col-md-3 mb-3">
             <label htmlFor="validationDefault02">Last name</label>
             <input type="text" className="form-control" id="validationDefault02" placeholder="Last name" required></input>
           </div>
-          <div className="col-md-4 mb-3">
+          <div className="col-md-3 mb-3">
             <label htmlFor="validationDefaultUsername">Username</label>
             <div className="input-group">
               <div className="input-group-prepend">
@@ -75,6 +83,10 @@ export default class SignUpForm extends React.Component {
               </div>
               <input type="text" className="form-control" id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" required></input>
             </div>
+          </div>
+          <div className="col-md-3 mb-3">
+            <label htmlFor="exampleInputPassword1">Password</label>
+            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
           </div>
         </div>
         <div className="form-row">
