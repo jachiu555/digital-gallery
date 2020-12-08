@@ -65,55 +65,45 @@ export default class SignUpForm extends React.Component {
 
   render() {
     return (
-      <form className="container">
-        <div className="form-row">
-          <div className="col-md-3 mb-3">
-            <label htmlFor="validationDefault01">First name</label>
-            <input type="text" className="form-control" id="validationDefault01" placeholder="First name" required></input>
+      <form className="container d-flex justify-content-center">
+        <div className="form-group align-items-center">
+          <div className="col-md-12 my-3">
+            <h1 className="title">Sign Up</h1>
+            <label className="sr-only" htmlFor="inlineFormInputName">First Name</label>
+            <input type="text" className="form-control" id="inlineFormInputName" placeholder="First Name"></input>
           </div>
-          <div className="col-md-3 mb-3">
-            <label htmlFor="validationDefault02">Last name</label>
-            <input type="text" className="form-control" id="validationDefault02" placeholder="Last name" required></input>
+          <div className="col-md-12 my-3">
+            <label className="sr-only" htmlFor="inlineFormInputName">Last Name</label>
+            <input type="text" className="form-control" id="inlineFormInputName" placeholder="Last Name"></input>
           </div>
-          <div className="col-md-3 mb-3">
-            <label htmlFor="validationDefaultUsername">Username</label>
+          <div className="col-md-12 my-3">
+            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address"></input>
+            <small id="emailHelp" className="form-text text-muted">We&apos;ll never share your email with anyone else.</small>
+          </div>
+          <div className="col-md-12 my-3">
+            <label className="sr-only" htmlFor="inlineFormInputGroupUsername">Username</label>
             <div className="input-group">
               <div className="input-group-prepend">
-                <span className="input-group-text" id="inputGroupPrepend2">@</span>
+                <div className="input-group-text">@</div>
               </div>
-              <input type="text" className="form-control" id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" required></input>
+              <input type="text" className="form-control" id="inlineFormInputGroupUsername" placeholder="Username"></input>
             </div>
           </div>
-          <div className="col-md-3 mb-3">
-            <label htmlFor="exampleInputPassword1">Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
+          <div className="col-md-12 my-3">
+            <label className="sr-only" htmlFor="inlineFormInputName">Password</label>
+            <input type="text" className="form-control" id="inlineFormInputName" placeholder="Password"></input>
+          </div>
+          <div className="col-auto my-3">
+            <div className="form-check">
+              <input className="form-check-input" type="checkbox" id="autoSizingCheck2"></input>
+              <label className="form-check-label" htmlFor="autoSizingCheck2">Remember me</label>
+            </div>
+          </div>
+          <div className="col-auto my-3">
+            <button type="submit" className="btn btn-primary">Submit</button>
           </div>
         </div>
-        <div className="form-row">
-          <div className="col-md-6 mb-3">
-            <label htmlFor="validationDefault03">City</label>
-            <input type="text" className="form-control" id="validationDefault03" placeholder="City" required></input>
-          </div>
-          <div className="col-md-3 mb-3">
-            <label htmlFor="validationDefault04">State</label>
-            <input type="text" className="form-control" id="validationDefault04" placeholder="State" required></input>
-          </div>
-          <div className="col-md-3 mb-3">
-            <label htmlFor="validationDefault05">Zip</label>
-            <input type="text" className="form-control" id="validationDefault05" placeholder="Zip" required></input>
-          </div>
-        </div>
-        <div className="form-group">
-          <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="" id="invalidCheck2" required></input>
-            <label className="form-check-label" htmlFor="invalidCheck2">
-                            Agree to terms and conditions
-            </label>
-          </div>
-        </div>
-        <button className="btn btn-primary" type="submit">Submit</button>
       </form>
     );
   }
-
 }
