@@ -85,7 +85,7 @@ h3 {
   width: 300px;
 }
 
-.plusIcon {
+.plusIcon, .fa-times {
   position: fixed;
   cursor: pointer;
 }
