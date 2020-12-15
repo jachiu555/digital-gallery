@@ -69,6 +69,22 @@ app.post('/api/products/', upload, (req, res, next) => {
     });
 });
 
+app.post('/api/user', (req, res, next) => {
+  if (!req.body.firstName || !req.body.lastName || !req.body.userName || !req.body.password) {
+    res.status(400).json({ Error: `Invalid content ${req.file}` });
+  }
+
+  const params = [req.body.firstName, req.body.lastName, req.body.userName, req.body.password];
+
+  db.query('insert into users (firstName, lastName, userName, password) values ($1, $2, $3, $4)', params)
+    .then(result => {
+      res.status(201).json(result.rows);
+    })
+    .catch(err => {
+      res.status(500).json(err.message);
+    });
+});
+
 app.patch('/api/products/:productid/', (req, res, next) => {
   const params = [req.body.title, parseInt(req.body.price), req.body.description, parseInt(req.params.productid)];
 
