@@ -53,6 +53,17 @@ app.get('/api/products/:productid', (req, res, next) => {
     });
 });
 
+app.get('api/users', (req, res, next) => {
+  db.query('select * from users where userId = $1', [req.params.userId])
+    .then(result => {
+      if (!result.rows[0]) {
+        return next(new ClientError(`cannot find user with id ${req.params.userId}`, 404));
+      } else {
+        res.json(result.rows[0]);
+      }
+    });
+});
+
 app.post('/api/products/', upload, (req, res, next) => {
   if (!req.body.title || !parseInt(req.body.price) || !req.body.description) {
     res.status(400).json({ Error: `Invalid content ${req.file}` });
@@ -69,21 +80,21 @@ app.post('/api/products/', upload, (req, res, next) => {
     });
 });
 
-app.post('/api/user', (req, res, next) => {
-  if (!req.body.firstName || !req.body.lastName || !req.body.userName || !req.body.password) {
-    res.status(400).json({ Error: `Invalid content ${req.file}` });
-  }
+// app.post('/api/user', (req, res, next) => {
+//   if (!req.body.firstName || !req.body.lastName || !req.body.userName || !req.body.password) {
+//     res.status(400).json({ Error: `Invalid content ${req.file}` });
+//   }
 
-  const params = [req.body.firstName, req.body.lastName, req.body.userName, req.body.password];
+//   const params = [req.body.firstName, req.body.lastName, req.body.userName, req.body.password];
 
-  db.query('insert into users (firstName, lastName, userName, password) values ($1, $2, $3, $4)', params)
-    .then(result => {
-      res.status(201).json(result.rows);
-    })
-    .catch(err => {
-      res.status(500).json(err.message);
-    });
-});
+//   db.query('insert into users (firstName, lastName, userName, password) values ($1, $2, $3, $4)', params)
+//     .then(result => {
+//       res.status(201).json(result.rows);
+//     })
+//     .catch(err => {
+//       res.status(500).json(err.message);
+//     });
+// });
 
 app.patch('/api/products/:productid/', (req, res, next) => {
   const params = [req.body.title, parseInt(req.body.price), req.body.description, parseInt(req.params.productid)];
