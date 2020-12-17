@@ -53,11 +53,11 @@ app.get('/api/products/:productid', (req, res, next) => {
     });
 });
 
-app.get('api/users', (req, res, next) => {
+app.get('/api/users/:userId', (req, res, next) => {
   db.query('select * from users where userId = $1', [req.params.userId])
     .then(result => {
       if (!result.rows[0]) {
-        return next(new ClientError(`cannot find user with id ${req.params.userId}`, 404));
+        return next(new ClientError(`cannot find product with id ${req.params.userId}`, 404));
       } else {
         res.json(result.rows[0]);
       }
