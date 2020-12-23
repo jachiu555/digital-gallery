@@ -1,3 +1,25 @@
+* {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.797);
+  padding-left: 200px;
+  height: 5vh;
+}
+
+h3 {
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.signIn, .signUp, .signOut {
+  color: white;
+  font-size: medium;
+  cursor: pointer;
+}
+
 .cardImage {
   height: 200px;
   width: 100%;
@@ -22,7 +44,7 @@
 }
 
 .imageDetail:hover {
-  transform: scale(1.5);
+  transform: scale(1.3);
 }
 
 .card-body {
@@ -63,6 +85,7 @@
   width: 300px;
 }
 
-.plusIcon {
+.plusIcon, .fa-times {
   position: fixed;
+  cursor: pointer;
 }
