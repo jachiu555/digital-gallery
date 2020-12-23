@@ -50,8 +50,12 @@ export default class SignInForm extends React.Component {
       });
   }
 
+  componentDidMount() {
+    this.getUsers();
+  }
+
   render() {
-    const userArray = this.state.users.map(users => <option key={users}>{users}</option>);
+    const userArray = this.state.users.map(user => <option key={user.userId}>{user.userName}</option>);
 
     return (
       <form className="container d-flex justify-content-center">
