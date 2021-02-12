@@ -75,15 +75,15 @@ export default class ProductForm extends React.Component {
         <form id="myForm" name="myForm" encType="multipart/form-data" onSubmit={this.handleSubmit}>
           <div className="form-inline justify-content-center mb-5">
             <label className="mr-5 formTextSize" htmlFor="title">Title</label>
-            <input value={this.state.title} onChange={this.onTitleChange} type="text" name="title" className="form-control" placeholder="Example input"></input>
+            <input value={this.state.title} onChange={this.onTitleChange} type="text" name="title" className="form-control" placeholder="Text"></input>
           </div>
           <div className="form-inline justify-content-center mb-5">
             <label className="mr-5 formTextSize" htmlFor="formGroupExampleInput2">Price</label>
-            <input value={this.state.price} onChange={this.onPriceChange} type="text" name="price" className="form-control" id="formGroupExampleInput2" placeholder="Another input"></input>
+            <input value={this.state.price} onChange={this.onPriceChange} type="text" name="price" className="form-control" id="formGroupExampleInput2" placeholder="Amount"></input>
           </div>
           <div className="form-inline justify-content-center mb-5">
             <label className="mr-5 formTextSize" htmlFor="formGroupExampleInput2">Description</label>
-            <input value={this.state.description} onChange={this.onDescriptionChange} type="text" name="description" className="form-control" id="formGroupExampleInput2" placeholder="Another input"></input>
+            <input value={this.state.description} onChange={this.onDescriptionChange} type="text" name="description" className="form-control" id="formGroupExampleInput2" placeholder="Information"></input>
           </div>
           <div className="custom-file mb-5">
             <input result={this.state.image} onChange={this.onUploadImage} type="file" name="myImage" className="custom-file-input" id="customFile"></input>
