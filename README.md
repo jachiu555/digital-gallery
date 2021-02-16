@@ -29,9 +29,14 @@ A dynamic web store for artists who want to upload their art to show or to sell.
 ![alt text](https://github.com/jachiu555/digital-gallery/blob/main/server/public/images/Digital%20Gallery%20Screenshot5.png)
 
 # Getting Started
+- Clone repository using `https://github.com/jachiu555/digital-gallery.git`
+- Navigate to the directory
 - Install dependencies with `npm install`
 - Install multer using `$ npm install --save multer`
-- Open terminal and start up database with `sudo service postgresql start`
+- Open terminal and start up database server with `sudo service postgresql start`
+- Create a database using `createdb digitalGallery`
+- Import database schema and data with `npm run db:import`
+- Launch pgweb using `pgweb --db=digitalGallery`
 - `npm run dev` 
 - `npm run build`
 - View project on localhost:3000 and database on localhost:8001
