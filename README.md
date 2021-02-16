@@ -12,6 +12,7 @@ A dynamic web store for artists who want to upload their art to show or to sell.
 - webpack
 - Babel
 - Bootstrap 4
+- Multer
 
 # Features
 - User can view all digital artwork
