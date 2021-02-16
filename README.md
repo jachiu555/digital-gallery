@@ -30,7 +30,7 @@ A dynamic web store for artists who want to upload their art to show or to sell.
 # Getting Started
 - Install dependencies with `npm install`
 - Install multer using `$ npm install --save multer`
-- Open terminal and start up database `sudo service postgresql start`
+- Open terminal and start up database with `sudo service postgresql start`
 - `npm run dev` 
 - `npm run build`
 - View project on localhost:3000 and database on localhost:8001
